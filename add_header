@@ -1,0 +1,5 @@
+#!/bin/sh
+# script to prepend header to all the source files 
+for f in */QinDenton*hour; do cat QDheader.txt $f > $f.txt; rm $f; done
+for f in */QinDenton*5min; do cat QDheader.txt $f > $f.txt; rm $f; done
+for f in */QinDenton*1min; do cat QDheader.txt $f > $f.txt; rm $f; done
