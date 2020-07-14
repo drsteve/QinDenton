@@ -53,7 +53,7 @@ def findLastValidDate():
     response = urllib2.urlopen(siteurl)
     dat = response.readlines()
     candidates = [line for line in dat if 'IMF and Plasma' in line]
-    if len(candidates)==1:
+    if len(candidates)>=1:
         try:
             last_valid = re.search('(\d{4}-\d{2}-\d{2} \(\d{3}\)) - (\d{4}-\d{2}-\d{2} \(\d{3}\))', candidates[0]).group(2)
             last_valid = re.search('(\d{4}-\d{2}-\d{2})', last_valid).group(1)
@@ -89,6 +89,7 @@ if __name__=='__main__':
 
     flist = removeFilesAfterDate(indate, options.Test)
     if options.Test:
+        print('Last valid data determined to be {0}'.format(indate))
         print('Files to be removed:')
         for ff in flist:
             print(ff)
