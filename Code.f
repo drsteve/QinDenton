@@ -50,6 +50,10 @@ c     end if
       iyear=year0-1
       write (ychar,'(i4)') iyear
       fchar=ychar//'/QinDenton_'//ychar//'1231_'
+c     Find correct resolution file for setting WG params
+      if (iformat.eq.5) go to 20
+      if (iformat.eq.60) go to 21
+c     Fall through to 1-minute
       filein=fchar//'1min.txt'
       write (*,*) 'searching ',filein
       open (unit=1,file=filein,err=20,status='old')       ! search for W1-6 pars in previous file
@@ -324,10 +328,12 @@ c     this program adds bs**gamma columns    ! runs 10mins for 20years/data, and
 	write(2,500)iyr,idoy,ihr,imin,By,Bz,V,N,P,(bsg(j),j=1,6)
 	goto 10
 500   FORMAT(I5,i4,2i3,2F8.2,F8.1,F7.2,F6.2,6F8.2)
-      close(1) 
-      close(2) 
+ 
+ 
 	 
 1000  write(*,*)'     Subroutine bsgamma_min    DONE'
+      close(1)
+      close(2)
       end
 cccccccccccccccc  end of bsgamma_min  cccccccccccccccccccccccccccccccccccccccc
 
@@ -1540,7 +1546,7 @@ cw     &    write (*,*) ' year',itime(1,j),' started'
      $ainter(10),istatus(10),ainter(11),istatus(11)
 50    format(i5,i4,2i3,2(f8.2,i2),f8.1,i2,f7.2,i2,f6.2,i2,6(f8.2,i2))
 
-2002  Continue
+2002  continue
 
       close(3)       
       write(*,*)'     Subroutine interpl_5min   DONE'	
