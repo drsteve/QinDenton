@@ -13,7 +13,7 @@ ViRBO:
 	bash add_header
 
 build:
-	g77 -o runQD Code.f
+	gfortran -std=legacy -o runQD Code.f
 
 omniupdate:
 	rm -f hour/omni2_hour.dat
