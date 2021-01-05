@@ -1,6 +1,6 @@
 #!/usr/bin/python2.6
 
-import os, glob, urllib, urllib2, re
+import os, glob, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, re
 import datetime as dt
 from optparse import OptionParser
 import dateutil.parser as dup
@@ -47,10 +47,10 @@ def removeFilesAfterDate(indate, test):
 def findLastValidDate():
     '''Parse the OMNI webpage to find the last valid date for IMF and plasma data'''
     siteurl = 'https://omniweb.gsfc.nasa.gov/html/omni_min_data.html'
-    proxies = urllib2.ProxyHandler({'https': 'http://proxyout.lanl.gov:8080/'})
-    opener = urllib2.build_opener(proxies)
-    urllib2.install_opener(opener)
-    response = urllib2.urlopen(siteurl)
+    proxies = urllib.request.ProxyHandler({'https': 'http://proxyout.lanl.gov:8080/'})
+    opener = urllib.request.build_opener(proxies)
+    urllib.request.install_opener(opener)
+    response = urllib.request.urlopen(siteurl)
     dat = response.readlines()
     candidates = [line for line in dat if 'IMF and Plasma' in line]
     if len(candidates)>=1:
