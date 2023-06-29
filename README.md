@@ -1,13 +1,14 @@
 # Qin-Denton Data Files for Magnetic Field Modeling
 This code is modified from Richard Denton's original code
-(described in [REF]), as the original required all input data
+(described in [Qin et al., 2007](https://doi.org/10.1029/2006SW000296)),
+as the original required all input data
 to be read at-once and processed from the start date to
 present in a single block.
 
 This modified version:
 - Processes the data in yearly blocks
   - This will try to read the initial coefficients from the previously processed year. If those do not exist, default parameters will be used and it may take a few weeks to obtain exact results, while the time-weighted parameters evolve to the correct solution.
-- Writes the output to daily files with a JSON header
+- Writes the output to daily files with a JSON header, as used by [LANLGeoMag](https://github.com/drsteve/LANLGeoMag) and [SpacePy](https://github.com/spacepy/spacepy)
 
 Using the code has several steps as described below. The
 brief description is that the Qin-Denton files perform
