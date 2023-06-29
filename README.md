@@ -22,13 +22,13 @@ Two options:
 2. Use the makefile provided (with any appropriate path updates) and run `make omniupdate`
 
 The 1963 - present hourly data are downloaded from 
-`spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat`
- with output in file hour/omni2_hour.dat
- then the 1995-todate KpDst data with 1h cadence are extracted from that download
+https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2_all_years.dat
+with output in file `hour/omni2_hour.dat`
+then the 1995-present KpDst data with 1h cadence are extracted from that download.
 
 The 1981-todate 1 min and 5 min data are downloaded from
-`spdf.gsfc.nasa.gov/pub/data/omni/high_res_omni/`
- with output in `1min/omni_1min.asc and 5min/omni_5min.asc`
+https://spdf.gsfc.nasa.gov/pub/data/omni/high_res_omni/
+with output in `1min/omni_1min.asc` and `5min/omni_5min.asc`
  
 ## Compilation
 The code requires a Fortran compiler, and the code itself is F77.
@@ -63,11 +63,15 @@ Output files are in yearly directories as above and with suffix .txt
 `./removeQDAfterDate.py -a`
 
 ### To calculate mag field parameters AND add header
-1. The hard way:
- edit in file Makefile the cadence, starting year (not before 1995), and number of years (not after 2015)
- on line `echo [cadence] [starting year] [no of years] | ./runQD`
- then type `make ViRBO`
- Output files are in yearly directories: year/QinDenton_[year][mo(nth)][da(y)]_[cade(nce)].txt
-2. The easy way:
- Run the script `scriptQD.sh`, if necessary modifying the output pathing, start year, etc.
- It will run the runQD executable for all cadences of input data and process the output.
+As noted above, the most straightforward way to run the process
+is to use the `scriptQD.sh` shell script.
+
+A more manual alternative is to edit the cadence, start year, and number of years in `Makefile`
+
+```echo [cadence] [starting year] [no of years] | ./runQD```
+
+then type
+
+```make ViRBO```
+
+Output files are in yearly directories: year/QinDenton_[year][mo(nth)][da(y)]_[cade(nce)].txt
